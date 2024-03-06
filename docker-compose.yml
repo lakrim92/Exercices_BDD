@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql
+    container_name: bdd
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: blog
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "false"
+      MYSQL_RANDOM_ROOT_PASSWORD: "false"
+    ports:
+      - 3306:3306
+    # volumes:
+    #   - ./bdd/blog.sql:/docker-entrypoint-initdb.d/blog.sql 
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8086:80
